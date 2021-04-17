@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Flip</string>
+    <string name="category_error">Algo deu errado</string>
 </resources>

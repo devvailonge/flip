@@ -1,19 +1,43 @@
 package com.devvailonge.flip
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.devvailonge.flip.features.categories.presentation.CategoryListEvent
+import com.devvailonge.flip.features.categories.presentation.CategoryListState
+import com.devvailonge.flip.features.categories.presentation.CategoryListViewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: CategoryListViewModel
+    private lateinit var imageTest: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        imageTest = findViewById(R.id.imgTest)
+        viewModel = ViewModelProvider(
+            this,
+            CategoryListViewModel.CategoryListViewModelFactory()
+        ).get(CategoryListViewModel::class.java)
 
+        setObserver()
 
+        viewModel.dispatch(CategoryListEvent.Fetch)
     }
 
-    fun updateState(state: CategoryListState){
-        when(state){
+    private fun setObserver() {
+        viewModel.state.observe(this, {
+            updateState(it)
+        })
+    }
+
+    private fun updateState(state: CategoryListState) {
+        Log.d("Roqueeee", state.toString())
+        when (state) {
             is CategoryListState.CategoryList -> {
                 state.list
             }
@@ -24,18 +48,12 @@ class MainActivity : AppCompatActivity() {
                 state.isLoading
             }
             CategoryListState.Empty -> {
-
+                imageTest.setImageResource(R.drawable.ic_category_empty)
             }
         }
     }
 
 }
 
-sealed class CategoryListState {
 
-    data class CategoryList(val list: List<String>) : CategoryListState()
-    data class ErrorMessage(val message : String) : CategoryListState()
-    data class Loading(val isLoading : Boolean) : CategoryListState()
-    object Empty : CategoryListState()
-}
 
