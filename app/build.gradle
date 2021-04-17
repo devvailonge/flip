@@ -8,6 +8,12 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+
+
     defaultConfig {
         applicationId "com.devvailonge.flip"
         minSdkVersion 23
@@ -54,6 +60,7 @@ dependencies {
     // ViewModel
     def lifecycle_version = "2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     //Room data base
     def room_version = "2.2.6"
