@@ -24,6 +24,10 @@ class HostActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            //Hide/Show toolbar
+        }
+
     }
 }
 
