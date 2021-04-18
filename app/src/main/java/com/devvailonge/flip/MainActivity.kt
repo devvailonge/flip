@@ -1,10 +1,10 @@
 package com.devvailonge.flip
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import com.devvailonge.flip.databinding.ActivityMainBinding
 import com.devvailonge.flip.features.categories.presentation.CategoryListEvent
 import com.devvailonge.flip.features.categories.presentation.CategoryListState
 import com.devvailonge.flip.features.categories.presentation.CategoryListViewModel
@@ -12,13 +12,13 @@ import com.devvailonge.flip.features.categories.presentation.CategoryListViewMod
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CategoryListViewModel
-    private lateinit var imageTest: ImageView
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        imageTest = findViewById(R.id.imgTest)
         viewModel = ViewModelProvider(
             this,
             CategoryListViewModel.CategoryListViewModelFactory()
@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateState(state: CategoryListState) {
-        Log.d("Roqueeee", state.toString())
         when (state) {
             is CategoryListState.CategoryList -> {
                 state.list
@@ -45,10 +44,10 @@ class MainActivity : AppCompatActivity() {
                 state.message
             }
             is CategoryListState.Loading -> {
-                state.isLoading
+               binding.loading.isVisible = state.isLoading
             }
             CategoryListState.Empty -> {
-                imageTest.setImageResource(R.drawable.ic_category_empty)
+                binding.imgTest.setImageResource(R.drawable.ic_category_empty)
             }
         }
     }
