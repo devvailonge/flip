@@ -1,4 +1,6 @@
 package com.devvailonge.flip.features.categories
 
-class CategoryListFragment {
+import androidx.fragment.app.Fragment
+
+class CategoryListFragment: Fragment() {
 }
