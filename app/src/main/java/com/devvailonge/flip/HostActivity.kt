@@ -17,7 +17,7 @@ class HostActivity : AppCompatActivity() {
         binding = ActivityHostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar);
+        setSupportActionBar(binding.toolbar)
 
         val navHostFragment: NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -28,6 +28,3 @@ class HostActivity : AppCompatActivity() {
 
     }
 }
-
-
-
