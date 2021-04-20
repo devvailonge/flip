@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Flip</string>
     <string name="category_error">Algo deu errado</string>
+    <string name="flashcard_error">Algo deu errado</string>
     <string name="cloud">Cloud</string>
     <string name="title_category_list">Categories</string>
     <string name="title_flash_card_list">Flash cards</string>
