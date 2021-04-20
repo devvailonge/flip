@@ -17,16 +17,14 @@ class HostActivity : AppCompatActivity() {
         binding = ActivityHostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar);
+
         val navHostFragment: NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController: NavController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
-
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            //Hide/Show toolbar
-        }
 
     }
 }
