@@ -3,4 +3,8 @@
     <string name="category_error">Algo deu errado</string>
     <string name="flashcard_error">Algo deu errado</string>
     <string name="cloud">Cloud</string>
+    <string name="text_title_delete_dialog_flash">PEDIDO PARA DELETAR</string>
+    <string name="text_message_dialog_flash">Essa ação ira deletar permanentemente o seu flash card, você tem certeza que quer realizar essa operação?</string>
+    <string name="delete">Deletar</string>
+    <string name="cancel">Cancelar</string>
 </resources>
