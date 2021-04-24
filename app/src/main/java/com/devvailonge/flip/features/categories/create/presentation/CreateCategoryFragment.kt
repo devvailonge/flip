@@ -1,4 +1,4 @@
-package com.devvailonge.flip.features.fragments
+package com.devvailonge.flip.features.categories.create.presentation
 
 import androidx.fragment.app.Fragment
 

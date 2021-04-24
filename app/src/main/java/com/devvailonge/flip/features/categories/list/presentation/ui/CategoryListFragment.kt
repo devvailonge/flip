@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.devvailonge.flip.R
 import com.devvailonge.flip.databinding.FragmentCategoryListBinding
+import com.devvailonge.flip.features.categories.create.domain.CreateCategoryUseCase
 import com.devvailonge.flip.features.categories.list.presentation.CategoryListEvent
 import com.devvailonge.flip.features.categories.list.presentation.CategoryListState
 import com.devvailonge.flip.features.categories.list.presentation.CategoryListViewModel
@@ -18,6 +19,8 @@ import com.devvailonge.flip.utils.viewBinding
 class CategoryListFragment: Fragment(R.layout.fragment_category_list) {
 
     private val binding by viewBinding(FragmentCategoryListBinding::bind)
+    private val adapter by lazy { CategoryListAdapter() }
+
     private lateinit var viewModel: CategoryListViewModel
 
     override fun onResume() {
@@ -41,7 +44,7 @@ class CategoryListFragment: Fragment(R.layout.fragment_category_list) {
     }
 
     private fun setObserver() {
-        viewModel.state.observe(viewLifecycleOwner, {
+        viewModel.state.observe(this, {
             updateState(it)
         })
     }
@@ -50,9 +53,9 @@ class CategoryListFragment: Fragment(R.layout.fragment_category_list) {
         Log.d("Roquee", state.toString())
         when (state) {
             is CategoryListState.CategoryList -> {
-                state.list
-                binding.vfCategoryList.displayedChild = LOADING
-
+                binding.vfCategoryList.displayedChild = SUCCESS
+                binding.txtCategoryTitle.setText(R.string.app_name)
+                adapter.submitList(state.list)
             }
             is CategoryListState.ErrorMessage -> {
                 binding.vfCategoryList.displayedChild = EMPTY
@@ -71,12 +74,22 @@ class CategoryListFragment: Fragment(R.layout.fragment_category_list) {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        setObserver()
+        viewModel.dispatch(CategoryListEvent.Fetch)
+        /**
+         * Just for test
+         */
+        CreateCategoryUseCase.populateItems()
+            .observe(this, {
+                Log.d("Roquee", it.toString())
+            })
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setObserver()
-        viewModel.dispatch(CategoryListEvent.Fetch)
-
+        binding.rvCategoryList.adapter = adapter
         binding.fabCategoryList.setOnClickListener {
             findNavController().navigate(
                 R.id.presentCreateCategory
