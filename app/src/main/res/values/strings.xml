@@ -3,4 +3,11 @@
     <string name="category_error">Algo deu errado</string>
     <string name="flashcard_error">Algo deu errado</string>
     <string name="cloud">Cloud</string>
+    <string name="title_category_list">Categories</string>
+    <string name="title_flash_card_list">Flash cards</string>
+    <string name="title_create_category">Create Category</string>
+    <string name="title_category_image_list">Category Image List</string>
+    <string name="title_create_flash_card">Create Flash Cards</string>
+    <string name="share">Share</string>
+    <string name="category_empty_message">Nada Aqui</string>
 </resources>

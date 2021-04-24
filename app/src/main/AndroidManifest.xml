@@ -10,8 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Flip">
-
-        <activity android:name=".features.categories.CategoryListFragment">
+        <activity android:name=".HostActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
