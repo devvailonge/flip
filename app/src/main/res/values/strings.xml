@@ -11,4 +11,6 @@
     <string name="category_empty_message">Nothing here</string>
     <string name="category_error_message">Something went wrong</string>
     <string name="loading">Loading…</string>
+    <string name="create_category_success">Success</string>
+    <string name="create_category_failed">Failed</string>
 </resources>

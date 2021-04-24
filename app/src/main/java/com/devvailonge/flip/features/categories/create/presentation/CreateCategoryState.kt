@@ -11,11 +11,12 @@ sealed class CreateCategoryState {
     /**
      * Display spinner
      */
-    object Loading: CreateCategoryState()
+    object Loading : CreateCategoryState()
 
     /**
      * Display string res message
-     * Can be success/failure
      */
-    data class Message(@StringRes val message: Int): CreateCategoryState()
+    data class Error(@StringRes val message: Int) : CreateCategoryState()
+
+    data class Success(val categoryId: Long, @StringRes val message: Int) : CreateCategoryState()
 }
