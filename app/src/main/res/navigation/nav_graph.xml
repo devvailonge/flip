@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/createCategoryFragment"
-        android:name="com.devvailonge.flip.features.categories.create.presentation.CreateCategoryFragment"
+        android:name="com.devvailonge.flip.features.categories.create.presentation.ui.CreateCategoryFragment"
         android:label="@string/title_create_category" >
 
         <action

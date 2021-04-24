@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.devvailonge.flip.FlipApplication
 import com.devvailonge.flip.base.AppDataBase
+import com.devvailonge.flip.features.categories.create.presentation.CreateCategoryState
 import com.devvailonge.flip.features.categories.data.CategoryDao
 import com.devvailonge.flip.features.categories.data.CategoryEntity
 import com.devvailonge.flip.features.categories.data.CategoryImage
@@ -14,14 +15,13 @@ class CreateCategoryUseCase(
     private val categoryDao: CategoryDao = AppDataBase.getDataBase(application).categoryDao()
 ) {
 
-
-    fun perform(name: String, categoryImage: CategoryImage): LiveData<Long> {
-        return liveData {
+    fun perform(name: String, categoryImage: CategoryImage): LiveData<CreateCategoryState> {
+        return TODO() /*liveData {
             emit(
                 categoryDao
                     .insert(CategoryEntity(name = name, categoryImage = categoryImage.name))
             )
-        }
+        }*/
     }
 
     fun perform(entity: CategoryEntity): LiveData<Long> {
