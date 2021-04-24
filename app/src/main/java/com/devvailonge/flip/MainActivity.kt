@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.devvailonge.flip.databinding.ActivityMainBinding
-import com.devvailonge.flip.features.categories.presentation.CategoryListEvent
-import com.devvailonge.flip.features.categories.presentation.CategoryListState
-import com.devvailonge.flip.features.categories.presentation.CategoryListViewModel
+import com.devvailonge.flip.features.categories.list.presentation.CategoryListEvent
+import com.devvailonge.flip.features.categories.list.presentation.CategoryListState
+import com.devvailonge.flip.features.categories.list.presentation.CategoryListViewModel
 
 class MainActivity : AppCompatActivity() {
 

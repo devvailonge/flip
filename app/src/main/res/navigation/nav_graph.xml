@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/categoryListFragment"
-        android:name="com.devvailonge.flip.features.categories.CategoryListFragment"
+        android:name="com.devvailonge.flip.features.categories.list.presentation.ui.CategoryListFragment"
         android:label="@string/title_category_list">
 
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/categoryImageListFragment"
-        android:name="com.devvailonge.flip.features.fragments.CategoryImageListFragment"
+        android:name="com.devvailonge.flip.features.categories.images.CategoryImageListFragment"
         android:label="@string/title_category_image_list" />
 
     <fragment

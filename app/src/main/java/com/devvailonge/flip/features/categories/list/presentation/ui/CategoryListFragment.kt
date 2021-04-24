@@ -1,4 +1,4 @@
-package com.devvailonge.flip.features.categories
+package com.devvailonge.flip.features.categories.list.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.devvailonge.flip.R
 import com.devvailonge.flip.databinding.FragmentCategoryListBinding
-import com.devvailonge.flip.features.categories.presentation.CategoryListEvent
-import com.devvailonge.flip.features.categories.presentation.CategoryListState
-import com.devvailonge.flip.features.categories.presentation.CategoryListViewModel
+import com.devvailonge.flip.features.categories.list.presentation.CategoryListEvent
+import com.devvailonge.flip.features.categories.list.presentation.CategoryListState
+import com.devvailonge.flip.features.categories.list.presentation.CategoryListViewModel
 import com.devvailonge.flip.utils.viewBinding
 
 
@@ -51,12 +51,16 @@ class CategoryListFragment: Fragment(R.layout.fragment_category_list) {
         when (state) {
             is CategoryListState.CategoryList -> {
                 state.list
+                binding.vfCategoryList.displayedChild = LOADING
+
             }
             is CategoryListState.ErrorMessage -> {
-                state.message
+                binding.vfCategoryList.displayedChild = EMPTY
+                binding.txtCategoryTitle.setText(state.message)
+                binding.imgCategoryList.setImageResource(R.drawable.ic_category_empty)
             }
             is CategoryListState.Loading -> {
-                binding.txtCategoryTitle.text = "Carregando..."
+                binding.txtCategoryTitle.setText(R.string.loading)
                 binding.vfCategoryList.displayedChild = LOADING
             }
             CategoryListState.Empty -> {
