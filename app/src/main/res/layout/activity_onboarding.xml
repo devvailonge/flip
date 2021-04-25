@@ -18,7 +18,7 @@
 
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/indicator"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="25dp"
         app:layout_constraintBottom_toBottomOf="@id/button_back"
         app:layout_constraintEnd_toStartOf="@+id/button_next"
@@ -30,7 +30,7 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pular"
+        android:text="Voltar"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -44,6 +44,16 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_skip"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pular"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

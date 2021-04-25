@@ -8,11 +8,17 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.devvailonge.flip.R
+import com.devvailonge.flip.features.categories.images.CategoryImageListAdapter
 
 class OnboardingViewPagerAdapter(val steps: Array<OnboardingSteps>):RecyclerView.Adapter<OnboardingViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
-      return LayoutInflater.from(parent.context).inflate(R.layout.item_onboarding,parent,false) as OnboardingViewHolder
+
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val itemView = layoutInflater.inflate(R.layout.item_onboarding,parent,false)
+
+     return OnboardingViewHolder(itemView)
     }
+
 
     override fun onBindViewHolder(holder: OnboardingViewHolder, position: Int) {
         holder.bind(steps[position])
@@ -33,4 +39,6 @@ class OnboardingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         title.text=itemView.context.getString(step.title)
         image.setImageDrawable(ContextCompat.getDrawable(itemView.context,step.image))
     }
+
+
 }

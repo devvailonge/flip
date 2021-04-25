@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="COM O FLIP APP MEMORIZAR FICOU MUITO MAIS FÁCIL" />
+        android:text="COM O FLIP APP MEMORIZAR FICOU MUITO MAIS FÁCIL" />
 
     <ImageView
         android:id="@+id/image"
