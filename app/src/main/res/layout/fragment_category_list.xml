@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txtCategoryTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_2"
-        android:layout_marginTop="?android:attr/actionBarSize"
-        android:fontFamily="@font/norwester"
-        android:text="@string/category_empty_message"
-        android:textColor="@color/fab"
-        android:textSize="36sp" />
-
-    <ViewFlipper
-        android:id="@+id/vfCategoryList"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?android:attr/actionBarSize"
-        app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout">
+        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_marginBottom="?android:attr/actionBarSize">
 
-        <ProgressBar
-            android:id="@+id/loadingCategoryList"
+        <TextView
+            android:id="@+id/txtCategoryTitle"
+            style="@style/MainText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_marginStart="@dimen/size_2"
+            android:text="@string/category_empty_message"
+            android:textColor="@color/fab" />
 
-        <ImageView
-            android:id="@+id/imgCategoryList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_category_empty" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
+        <ViewFlipper
+            android:id="@+id/vfCategoryList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/size_1" />
+            android:layout_below="@id/txtCategoryTitle">
 
-    </ViewFlipper>
+            <ProgressBar
+                android:id="@+id/loadingCategoryList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/imgCategoryList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_category_empty" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategoryList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/size_1"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_category" />
+
+        </ViewFlipper>
+    </RelativeLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"

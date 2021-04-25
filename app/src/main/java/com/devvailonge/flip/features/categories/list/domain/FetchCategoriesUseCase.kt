@@ -1,4 +1,4 @@
-package com.devvailonge.flip.features.categories.domain
+package com.devvailonge.flip.features.categories.list.domain
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -8,7 +8,7 @@ import com.devvailonge.flip.FlipApplication
 import com.devvailonge.flip.R
 import com.devvailonge.flip.base.AppDataBase
 import com.devvailonge.flip.features.categories.data.CategoryDao
-import com.devvailonge.flip.features.categories.presentation.CategoryListState
+import com.devvailonge.flip.features.categories.list.presentation.CategoryListState
 
 class FetchCategoriesUseCase(
     application: Application,
@@ -32,7 +32,7 @@ class FetchCategoriesUseCase(
 
                 emitSource(source)
             } catch (exc: Exception) {
-                emit(CategoryListState.ErrorMessage(R.string.category_error))
+                emit(CategoryListState.ErrorMessage(R.string.category_error_message))
             }
         }
 

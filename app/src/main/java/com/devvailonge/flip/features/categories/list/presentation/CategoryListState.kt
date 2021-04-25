@@ -1,4 +1,4 @@
-package com.devvailonge.flip.features.categories.presentation
+package com.devvailonge.flip.features.categories.list.presentation
 
 import androidx.annotation.StringRes
 import com.devvailonge.flip.features.categories.data.CategoryEntity

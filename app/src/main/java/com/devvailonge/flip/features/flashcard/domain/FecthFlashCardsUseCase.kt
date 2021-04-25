@@ -7,9 +7,7 @@ import androidx.lifecycle.switchMap
 import com.devvailonge.flip.FlipApplication
 import com.devvailonge.flip.R
 import com.devvailonge.flip.base.AppDataBase
-import com.devvailonge.flip.features.categories.domain.FetchCategoriesUseCase
 import com.devvailonge.flip.features.flashcard.data.FlashCardDao
-import com.devvailonge.flip.features.flashcard.presentation.FlashCardListEvent
 import com.devvailonge.flip.features.flashcard.presentation.FlashCardListState
 
 class FetchFlashCardsUseCase(

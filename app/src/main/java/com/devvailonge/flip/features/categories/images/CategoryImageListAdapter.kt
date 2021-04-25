@@ -1,7 +1,5 @@
-package com.devvailonge.flip.features.categories
+package com.devvailonge.flip.features.categories.images
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +12,13 @@ import com.devvailonge.flip.features.categories.data.CategoryImage
 class CategoryImageListAdapter(private val categoryImages: List<CategoryImage>)
     : RecyclerView.Adapter<CategoryImageListAdapter.CategoryImageViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryImageListAdapter.CategoryImageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryImageViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemView = layoutInflater.inflate(R.layout.item_category_image,parent,false)
         return CategoryImageViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder:CategoryImageListAdapter.CategoryImageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryImageViewHolder, position: Int) {
         val item = categoryImages[position]
         holder.bind(item)
     }
@@ -34,8 +32,8 @@ class CategoryImageListAdapter(private val categoryImages: List<CategoryImage>)
         lateinit var imageCategory: ImageView
 
         fun bind(data: CategoryImage) {
-            ctnImage = view.findViewById(R.id.ctnCategoryItem)
-            imageCategory = view.findViewById(R.id.imgCategoryItem)
+            ctnImage = view.findViewById(R.id.ctnCategoryImageItem)
+            imageCategory = view.findViewById(R.id.imgCategoryImageItem)
 
             ctnImage.setBackgroundColor(ctnImage.context.getColor(data.bg))
             imageCategory.setImageDrawable(imageCategory.context.getDrawable(data.image))

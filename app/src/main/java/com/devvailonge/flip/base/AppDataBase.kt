@@ -7,9 +7,10 @@ import androidx.room.RoomDatabase
 import com.devvailonge.flip.features.categories.data.CategoryDao
 import com.devvailonge.flip.features.categories.data.CategoryEntity
 import com.devvailonge.flip.features.flashcard.data.FlashCardDao
+import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
 
 
-@Database(entities = [CategoryEntity::class], version = 1, exportSchema = false)
+@Database(entities = [CategoryEntity::class, FlashCardEntity::class], version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao
