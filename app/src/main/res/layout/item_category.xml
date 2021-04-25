@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/size_1"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgCategoryItem"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/category_1"
+        android:contentDescription="@null"
+        android:cropToPadding="true"
+        android:padding="@dimen/size_2"
+        android:src="@drawable/ic_category_1" />
+
+    <TextView
+        android:id="@+id/txtCategoryTitle"
+        style="@style/Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_1"
+        tools:text="Alemao A1" />
+
+    <TextView
+        android:id="@+id/txtCategoryDesc"
+        style="@style/Body.Gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_1"
+        android:text="Total: 12 cards" />
+</LinearLayout>
+
