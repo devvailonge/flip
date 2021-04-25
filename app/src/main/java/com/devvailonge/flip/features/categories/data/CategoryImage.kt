@@ -5,21 +5,42 @@ import androidx.annotation.DrawableRes
 import com.devvailonge.flip.R
 
 enum class CategoryImage(
-    id: Int,
-    @DrawableRes image: Int,
-    @ColorRes bg: Int
+    val id: Int,
+    @DrawableRes val image: Int,
+    @ColorRes val bg: Int
 ) {
 
     LANGUAGE(
         1,
-        R.drawable.ic_category_empty,
-        R.color.black
+        R.drawable.ic_category_1,
+        R.color.category_1
+    ),
+
+    GEO(
+        2,
+        R.drawable.ic_category_2,
+        R.color.category_2
+    ),
+
+    MATH(
+        3,
+        R.drawable.ic_category_3,
+        R.color.category_3
+    ),
+
+    HISTORY(
+        4,
+        R.drawable.ic_category_4,
+        R.color.category_4
     ),
 
     DEFAULT(
-        1,
-        R.drawable.ic_onboarding_one,
-        R.color.purple_200
+        5,
+        R.drawable.ic_category_5,
+        R.color.category_5
     )
 
+}
+fun generateCategoryList (): List<CategoryImage> {
+    return CategoryImage.values().asList()
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/categoryListFragment">
+
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="com.devvailonge.flip.features.categories.list.presentation.ui.CategoryListFragment"
+        android:label="@string/title_category_list">
+
+        <action
+            android:id="@+id/presentFlashCardList"
+            app:destination="@id/flashCardListFragment"/>
+
+        <action
+            android:id="@+id/presentCreateCategory"
+            app:destination="@id/createCategoryFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/createCategoryFragment"
+        android:name="com.devvailonge.flip.features.categories.create.presentation.ui.CreateCategoryFragment"
+        android:label="@string/title_create_category" >
+
+        <action
+            android:id="@+id/presentCategoryImageList"
+            app:destination="@id/categoryImageListFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryImageListFragment"
+        android:name="com.devvailonge.flip.features.categories.images.CategoryImageListFragment"
+        android:label="@string/title_category_image_list" />
+
+    <fragment
+        android:id="@+id/flashCardListFragment"
+        android:name="com.devvailonge.flip.features.fragments.FlashCardListFragment"
+        android:label="@string/title_flash_card_list" />
+
+    <fragment
+        android:id="@+id/createFlashCardFragment"
+        android:name="com.devvailonge.flip.features.fragments.CreateFlashCardFragment"
+        android:label="@string/title_create_flash_card" />
+
+</navigation>

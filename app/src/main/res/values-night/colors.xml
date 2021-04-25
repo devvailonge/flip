@@ -7,14 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="fab">#442C2E</color>
     <color name="cloud_light">#FFF8D2C4</color>
     <color name="cloud_med">#FFFCC4B0</color>
     <color name="cloud_dark">#FFEEC0AF</color>
-    <color name="category_1">#FFD185</color>
-    <color name="category_2">#DCDAF2</color>
-    <color name="category_3">#E5BA93</color>
-    <color name="category_4">#9677C0</color>
-    <color name="category_5">#4A8FB4</color>
-
 </resources>
