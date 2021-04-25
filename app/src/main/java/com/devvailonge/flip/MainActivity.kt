@@ -12,6 +12,8 @@ import com.devvailonge.flip.features.categories.presentation.CategoryListViewMod
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CategoryListViewModel
+
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
