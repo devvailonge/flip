@@ -36,12 +36,12 @@
 
     <fragment
         android:id="@+id/flashCardListFragment"
-        android:name="com.devvailonge.flip.features.fragments.FlashCardListFragment"
+        android:name="com.devvailonge.flip.features.flashcard.list.presentation.ui.FlashCardListFragment"
         android:label="@string/title_flash_card_list" />
 
     <fragment
         android:id="@+id/createFlashCardFragment"
-        android:name="com.devvailonge.flip.features.fragments.CreateFlashCardFragment"
+        android:name="com.devvailonge.flip.features.flashcard.create.presentation.ui.FlashCardCreateFragment"
         android:label="@string/title_create_flash_card" />
 
 </navigation>

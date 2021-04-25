@@ -1,10 +1,10 @@
-package com.devvailonge.flip.features.flashcardcreate.presentation
+package com.devvailonge.flip.features.flashcard.create.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
-import com.devvailonge.flip.features.flashcardcreate.domain.InsertFlashCardUseCase
+import com.devvailonge.flip.features.flashcard.create.domain.InsertFlashCardUseCase
 
 class FlashCardCreateViewModel (
     private val insertFlashCardUseCase: InsertFlashCardUseCase

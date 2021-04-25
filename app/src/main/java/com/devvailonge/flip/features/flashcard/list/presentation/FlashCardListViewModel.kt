@@ -1,7 +1,7 @@
-package com.devvailonge.flip.features.flashcard.presentation
+package com.devvailonge.flip.features.flashcard.list.presentation
 
 import androidx.lifecycle.*
-import com.devvailonge.flip.features.flashcard.domain.FetchFlashCardsUseCase
+import com.devvailonge.flip.features.flashcard.list.domain.FetchFlashCardsUseCase
 import java.lang.IllegalArgumentException
 
 class FlashCardListViewModel(

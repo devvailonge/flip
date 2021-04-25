@@ -13,4 +13,5 @@
     <string name="loading">Loading…</string>
     <string name="create_category_success">Success</string>
     <string name="create_category_failed">Failed</string>
+    <string name="create_flashcard_success">Success</string>
 </resources>

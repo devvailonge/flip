@@ -1,6 +1,4 @@
-package com.devvailonge.flip.features.flashcardcreate.presentation
-
-import com.devvailonge.flip.features.categories.data.CategoryEntity
+package com.devvailonge.flip.features.flashcard.create.presentation
 
 sealed class FlashCardCreateEvent {
 
