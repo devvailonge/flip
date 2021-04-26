@@ -1,7 +1,7 @@
-package com.devvailonge.flip.features.categories.presentation
+package com.devvailonge.flip.features.categories.list.presentation
 
 import androidx.lifecycle.*
-import com.devvailonge.flip.features.categories.domain.FetchCategoriesUseCase
+import com.devvailonge.flip.features.categories.list.domain.FetchCategoriesUseCase
 
 class CategoryListViewModel(
     private val fetchCategoriesUseCase: FetchCategoriesUseCase

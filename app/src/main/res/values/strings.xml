@@ -1,10 +1,29 @@
 <resources>
     <string name="app_name">Flip</string>
     <string name="category_error">Algo deu errado</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onboarding_step_one">COM O FLIP APP MEMORIZAR FICOU MUITO MAIS FÁCIL</string>
+    <string name="onboarding_step_two">CRIE QUANTOS CARDS QUISER!</string>
+    <string name="onboarding_step_three">COMPLETE SEUS OBJETIVOS!</string>
+
     <string name="flashcard_error">Algo deu errado</string>
     <string name="cloud">Cloud</string>
+
     <string name="text_title_delete_dialog_flash">PEDIDO PARA DELETAR</string>
     <string name="text_message_dialog_flash">Essa ação ira deletar permanentemente o seu flash card, você tem certeza que quer realizar essa operação?</string>
     <string name="delete">Deletar</string>
     <string name="cancel">Cancelar</string>
+
+    <string name="title_category_list">Categories</string>
+    <string name="title_flash_card_list">Flash cards</string>
+    <string name="title_create_category">Create Category</string>
+    <string name="title_category_image_list">Category Image List</string>
+    <string name="title_create_flash_card">Create Flash Cards</string>
+    <string name="share">Share</string>
+    <string name="category_empty_message">Nothing here</string>
+    <string name="category_error_message">Something went wrong</string>
+    <string name="loading">Loading…</string>
+    <string name="create_category_success">Success</string>
+    <string name="create_category_failed">Failed</string>
 </resources>
