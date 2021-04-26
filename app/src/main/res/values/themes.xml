@@ -21,11 +21,11 @@
     </style>
 
     <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/text_delete_flash</item>
+        <item name="android:textColor">@color/dark_brown</item>
     </style>
 
     <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/text_delete_flash</item>
+        <item name="android:textColor">@color/dark_brown</item>
     </style>
 
 </resources>
