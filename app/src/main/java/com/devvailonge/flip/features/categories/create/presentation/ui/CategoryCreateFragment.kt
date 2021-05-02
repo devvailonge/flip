@@ -1,8 +1,10 @@
 package com.devvailonge.flip.features.categories.create.presentation.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.devvailonge.flip.R
 import com.devvailonge.flip.databinding.FragmentCategoryCreateBinding
 import com.devvailonge.flip.features.categories.create.presentation.CategoryCreateViewModel
@@ -24,5 +26,15 @@ class CategoryCreateFragment: Fragment(R.layout.fragment_category_create) {
 
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.ctnSelectImageCategoryCreate.setOnClickListener{
+            findNavController().navigate(
+                R.id.presentCategoryImageList
+            )
+        }
+    }
 
 }
