@@ -2,13 +2,15 @@ package com.devvailonge.flip.features.categories.create.presentation
 
 import androidx.lifecycle.*
 import com.devvailonge.flip.features.categories.create.domain.CreateCategoryUseCase
+import com.devvailonge.flip.features.categories.create.domain.SelectCategoryImageUseCase
 
 /**
  * Bridge btw category creation business logic
  * and UI
  */
 class CategoryCreateViewModel(
-    private val createCategoryUseCase: CreateCategoryUseCase
+    private val createCategoryUseCase: CreateCategoryUseCase,
+    private val selectCategoryImageUseCase: SelectCategoryImageUseCase
 ) : ViewModel() {
 
     private val event = MutableLiveData<CategoryCreateEvent>()
@@ -17,8 +19,9 @@ class CategoryCreateViewModel(
         when (it) {
             is CategoryCreateEvent.Insert -> createCategoryUseCase.perform(
                 it.name,
-                it.categoryImage
+                selectCategoryImageUseCase.categoryImage.value
             )
+            is CategoryCreateEvent.SelectCategoryImage -> selectCategoryImageUseCase.perform(it.categoryImage)
         }
     }
 
@@ -34,7 +37,8 @@ class CategoryCreateViewModel(
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return if (modelClass.isAssignableFrom(CategoryCreateViewModel::class.java)) {
                 CategoryCreateViewModel(
-                    this.createCategoryUseCase
+                    this.createCategoryUseCase,
+                    SelectCategoryImageUseCase.create()
                 ) as T
             } else {
                 throw IllegalArgumentException("ViewModel Not Found")

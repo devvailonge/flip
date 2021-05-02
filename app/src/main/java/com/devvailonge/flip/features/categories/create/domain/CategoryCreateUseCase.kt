@@ -16,27 +16,24 @@ class CreateCategoryUseCase(
     private val categoryDao: CategoryDao = AppDataBase.getDataBase(application).categoryDao()
 ) {
 
-    fun perform(name: String, categoryImage: CategoryImage): LiveData<CategoryCreateState> {
+    fun perform(name: String, categoryImage: CategoryImage?): LiveData<CategoryCreateState> {
         return liveData {
             emit(CategoryCreateState.Loading)
             try {
-                val result = categoryDao
-                    .insert(CategoryEntity(name = name, categoryImage = categoryImage.name))
-                emit(CategoryCreateState.Success(result, R.string.create_category_success))
+                categoryImage?.let {
+                    val result = categoryDao
+                        .insert(CategoryEntity(name = name, categoryImage = it.name))
+                    emit(CategoryCreateState.Success(result, R.string.create_category_success))
+                } ?: run {
+                    emit(CategoryCreateState.Error(R.string.missing_category_image))
+                }
+
             } catch (exception: Exception) {
                 emit(CategoryCreateState.Error(R.string.create_category_failed))
             }
         }
     }
 
-    fun perform(entity: CategoryEntity): LiveData<Long> {
-        return liveData {
-            emit(
-                categoryDao
-                    .insert(entity)
-            )
-        }
-    }
 
     companion object {
 
@@ -44,58 +41,5 @@ class CreateCategoryUseCase(
             return CreateCategoryUseCase(FlipApplication.instance)
         }
 
-        /**
-         * Just for testing
-         */
-        fun populateItems(): LiveData<Long> {
-            return liveData {
-                emitSource(
-                    create().perform(
-                        CategoryEntity(
-                            id = 1,
-                            name = "Alemao A1",
-                            categoryImage = CategoryImage.LANGUAGE.name
-                        )
-                    )
-                )
-                emitSource(
-                    create().perform(
-                        CategoryEntity(
-                            id = 2,
-                            name = "Capitais",
-                            categoryImage = CategoryImage.GEO.name
-                        )
-                    )
-                )
-                emitSource(
-                    create().perform(
-                        CategoryEntity(
-                            id = 3,
-                            name = "Historia",
-                            categoryImage = CategoryImage.HISTORY.name
-                        )
-                    )
-                )
-                emitSource(
-                    create().perform(
-                        CategoryEntity(
-                            id = 4,
-                            name = "Matematica",
-                            categoryImage = CategoryImage.MATH.name
-                        )
-                    )
-                )
-                emitSource(
-                    create().perform(
-                        CategoryEntity(
-                            id = 5,
-                            name = "Default",
-                            categoryImage = CategoryImage.DEFAULT.name
-                        )
-                    )
-                )
-            }
-
-        }
     }
 }

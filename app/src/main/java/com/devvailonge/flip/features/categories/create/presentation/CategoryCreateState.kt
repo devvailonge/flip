@@ -1,6 +1,7 @@
 package com.devvailonge.flip.features.categories.create.presentation
 
 import androidx.annotation.StringRes
+import com.devvailonge.flip.features.categories.data.CategoryImage
 
 /**
  * Parent class that contains all UI states
@@ -19,4 +20,6 @@ sealed class CategoryCreateState {
     data class Error(@StringRes val message: Int) : CategoryCreateState()
 
     data class Success(val categoryId: Long, @StringRes val message: Int) : CategoryCreateState()
+
+    data class CategorySelected(val categoryImage: CategoryImage): CategoryCreateState()
 }

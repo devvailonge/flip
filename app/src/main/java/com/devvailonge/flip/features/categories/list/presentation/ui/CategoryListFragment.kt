@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.devvailonge.flip.R
 import com.devvailonge.flip.databinding.FragmentCategoryListBinding
-import com.devvailonge.flip.features.categories.create.domain.CreateCategoryUseCase
 import com.devvailonge.flip.features.categories.list.presentation.CategoryListEvent
 import com.devvailonge.flip.features.categories.list.presentation.CategoryListState
 import com.devvailonge.flip.features.categories.list.presentation.CategoryListViewModel
@@ -78,13 +77,7 @@ class CategoryListFragment: Fragment(R.layout.fragment_category_list) {
         super.onStart()
         setObserver()
         viewModel.dispatch(CategoryListEvent.Fetch)
-        /**
-         * Just for test
-         */
-        CreateCategoryUseCase.populateItems()
-            .observe(this, {
-                Log.d("Roquee", it.toString())
-            })
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -29,4 +29,5 @@
     <string name="category_name">Nome da categoria</string>
     <string name="select_image">Selecionar Imagem</string>
     <string name="save">Salvar</string>
+    <string name="missing_category_image">Seleciona uma imagem</string>
 </resources>
