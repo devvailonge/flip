@@ -2,7 +2,7 @@
 <resources>
     <style name="MainText" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/norwester</item>
-        <item name="android:textColor">#FF442C2E</item>
+        <item name="android:textColor">@color/brown</item>
         <item name="android:textSize">40.5sp</item>
         <item name="android:lineSpacingMultiplier">1.3</item>
     </style>
@@ -25,5 +25,20 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
-    <color name="gray">#5A6978</color>
+    <style name="AppCompatEditText" parent="TextAppearance.AppCompat">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:layout_marginStart">@dimen/size_2</item>
+        <item name="android:layout_marginEnd">@dimen/size_2</item>
+        <item name="android:layout_marginTop">@dimen/size_2</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <style name="Button.Text" parent="MainText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Button" parent="Button.Text">
+        <item name="background">@drawable/flip_button_bg</item>
+    </style>
+
 </resources>

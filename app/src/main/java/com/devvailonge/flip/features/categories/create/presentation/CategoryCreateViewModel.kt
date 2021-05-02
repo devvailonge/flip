@@ -2,7 +2,6 @@ package com.devvailonge.flip.features.categories.create.presentation
 
 import androidx.lifecycle.*
 import com.devvailonge.flip.features.categories.create.domain.CreateCategoryUseCase
-import com.devvailonge.flip.features.categories.list.presentation.CategoryListViewModel
 
 /**
  * Bridge btw category creation business logic
@@ -33,7 +32,7 @@ class CategoryCreateViewModel(
         ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return if (modelClass.isAssignableFrom(CategoryListViewModel::class.java)) {
+            return if (modelClass.isAssignableFrom(CategoryCreateViewModel::class.java)) {
                 CategoryCreateViewModel(
                     this.createCategoryUseCase
                 ) as T
