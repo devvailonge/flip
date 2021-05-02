@@ -8,22 +8,22 @@ import com.devvailonge.flip.features.categories.list.presentation.CategoryListVi
  * Bridge btw category creation business logic
  * and UI
  */
-class CreateCategoryViewModel(
+class CategoryCreateViewModel(
     private val createCategoryUseCase: CreateCategoryUseCase
 ) : ViewModel() {
 
-    private val event = MutableLiveData<CreateCategoryEvent>()
+    private val event = MutableLiveData<CategoryCreateEvent>()
 
-    val state: LiveData<CreateCategoryState> = event.switchMap {
+    val state: LiveData<CategoryCreateState> = event.switchMap {
         when (it) {
-            is CreateCategoryEvent.Insert -> createCategoryUseCase.perform(
+            is CategoryCreateEvent.Insert -> createCategoryUseCase.perform(
                 it.name,
                 it.categoryImage
             )
         }
     }
 
-    fun dispatch(event: CreateCategoryEvent) {
+    fun dispatch(event: CategoryCreateEvent) {
         this.event.postValue(event)
     }
 
@@ -34,7 +34,7 @@ class CreateCategoryViewModel(
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return if (modelClass.isAssignableFrom(CategoryListViewModel::class.java)) {
-                CreateCategoryViewModel(
+                CategoryCreateViewModel(
                     this.createCategoryUseCase
                 ) as T
             } else {
