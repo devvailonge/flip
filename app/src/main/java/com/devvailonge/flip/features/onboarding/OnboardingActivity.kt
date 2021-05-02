@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
+import com.devvailonge.flip.HostActivity
 import com.devvailonge.flip.R
 import me.relex.circleindicator.CircleIndicator3
 
@@ -28,6 +29,9 @@ class OnboardingActivity : AppCompatActivity() {
 
         val list = OnboardingSteps.values()
 
+        btnSkip.setOnClickListener {
+            startActivity(HostActivity.start(this))
+        }
 
         val adapter = OnboardingViewPagerAdapter(list)
         viewPager.adapter=adapter
