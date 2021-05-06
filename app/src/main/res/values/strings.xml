@@ -26,4 +26,8 @@
     <string name="loading">Loading…</string>
     <string name="create_category_success">Success</string>
     <string name="create_category_failed">Failed</string>
+    <string name="category_name">Nome da categoria</string>
+    <string name="select_image">Selecionar Imagem</string>
+    <string name="save">Salvar</string>
+    <string name="missing_category_image">Seleciona uma imagem</string>
 </resources>
