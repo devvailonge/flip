@@ -9,7 +9,7 @@ import com.devvailonge.flip.features.flashcard.create.presentation.FlashCardCrea
 import com.devvailonge.flip.features.flashcard.create.presentation.FlashCardCreateViewModel
 import com.devvailonge.flip.utils.viewBinding
 
-class FlashCardCreateFragment: Fragment(R.layout.fragment_category_create) {
+class FlashCardCreateFragment: Fragment(R.layout.fragment_flashcard_create) {
 
     private val binding by viewBinding(FragmentFlashcardCreateBinding::bind)
     private lateinit var viewModel: FlashCardCreateViewModel
@@ -36,6 +36,4 @@ class FlashCardCreateFragment: Fragment(R.layout.fragment_category_create) {
     private fun updateState(state: FlashCardCreateState) {
         print(state)
     }
-
-
 }
