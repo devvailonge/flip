@@ -6,8 +6,8 @@ import androidx.lifecycle.liveData
 import com.devvailonge.flip.FlipApplication
 import com.devvailonge.flip.R
 import com.devvailonge.flip.base.AppDataBase
-import com.devvailonge.flip.features.flashcard.data.FlashCardDao
 import com.devvailonge.flip.features.flashcard.create.presentation.FlashCardCreateState
+import com.devvailonge.flip.features.flashcard.data.FlashCardDao
 import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
 
 class InsertFlashCardUseCase(
@@ -15,16 +15,25 @@ class InsertFlashCardUseCase(
     private val flashCardDao: FlashCardDao = AppDataBase.getDataBase(application).flashcardDao()
     ) {
 
-    fun perfom(textFront:String, textBack:String, categoryId:Long) : LiveData<FlashCardCreateState>{
+    fun perform(textFront:String, textBack:String, categoryId:Long) : LiveData<FlashCardCreateState>{
         return liveData {
             emit(FlashCardCreateState.Loading)
             try {
-                flashCardDao.addFlashCard(FlashCardEntity(frontText = textFront, backText = textBack, categoryId = categoryId))
-                emit(FlashCardCreateState.Message(R.string.create_flashcard_success))
+                when {
+                    textFront.isEmpty() -> {
+                        emit(FlashCardCreateState.Message(R.string.create_flashcard_front_empty))
+                    }
+                    textBack.isEmpty() -> {
+                        emit(FlashCardCreateState.Message(R.string.create_flashcard_back_empty))
+                    }
+                    else -> {
+                        flashCardDao.addFlashCard(FlashCardEntity(frontText = textFront, backText = textBack, categoryId = categoryId))
+                        emit(FlashCardCreateState.Message(R.string.create_flashcard_success))
+                    }
+                }
             } catch (exception:Exception) {
                 emit(FlashCardCreateState.Message(R.string.flashcard_error))
             }
-
         }
     }
 
@@ -33,6 +42,5 @@ class InsertFlashCardUseCase(
             return InsertFlashCardUseCase(FlipApplication.instance)
         }
     }
-
 }
 

@@ -31,4 +31,6 @@
     <string name="select_image">Selecionar Imagem</string>
     <string name="save">Salvar</string>
     <string name="missing_category_image">Seleciona uma imagem</string>
+    <string name="create_flashcard_back_empty">Preencha o verso do seu flash card</string>
+    <string name="create_flashcard_front_empty">preencha a frente do seu card</string>
 </resources>
