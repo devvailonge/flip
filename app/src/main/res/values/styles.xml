@@ -41,4 +41,10 @@
         <item name="background">@drawable/flip_button_bg</item>
     </style>
 
+    <style name="FloatActionButton">
+        <item name="android:src">@drawable/ic_baseline_add</item>
+        <item name="backgroundTint">@color/fab</item>
+        <item name="tint">@null</item>
+    </style>
+
 </resources>

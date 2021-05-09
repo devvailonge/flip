@@ -7,10 +7,14 @@ import androidx.room.*
 interface FlashCardDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun addFlashCard(flashCard: FlashCardEntity)
+    suspend fun addFlashCard(flashCard: FlashCardEntity)
 
     @Query("SELECT * FROM flashcard_table ORDER BY id ASC ")
     fun getAllFlashCards(): LiveData<List<FlashCardEntity>>
+
+
+    @Query("SELECT * FROM flashcard_table  WHERE categoryId = :categoryId ORDER BY id ASC ")
+    fun getFlashcardByCategory(categoryId: Long): LiveData<List<FlashCardEntity>>
 
     @Update
     fun updateFlashCard(flashCard: FlashCardEntity)

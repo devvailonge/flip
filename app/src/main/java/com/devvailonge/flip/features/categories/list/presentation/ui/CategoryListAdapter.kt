@@ -12,9 +12,10 @@ import com.devvailonge.flip.R
 import com.devvailonge.flip.features.categories.data.CategoryEntity
 import com.devvailonge.flip.features.categories.data.CategoryImage
 
-class CategoryListAdapter : ListAdapter<CategoryEntity, CategoryListAdapter.CategoryViewHolder>(
-    CategoryListAdapter
-)  {
+class CategoryListAdapter(private val clickListener: (CategoryEntity) -> Unit) :
+    ListAdapter<CategoryEntity, CategoryListAdapter.CategoryViewHolder>(
+        CategoryListAdapter
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,15 +25,17 @@ class CategoryListAdapter : ListAdapter<CategoryEntity, CategoryListAdapter.Cate
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
 
-    class CategoryViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class CategoryViewHolder(
+        private val view: View
+    ) : RecyclerView.ViewHolder(view) {
         lateinit var imageCategory: ImageView
         lateinit var txtCategoryTitle: TextView
 
-        fun bind(data: CategoryEntity) {
+        fun bind(data: CategoryEntity, clickListener: (CategoryEntity) -> Unit) {
 
             val categoryImage = CategoryImage.valueOf(data.categoryImage)
             imageCategory = view.findViewById(R.id.imgCategoryItem)
@@ -41,6 +44,10 @@ class CategoryListAdapter : ListAdapter<CategoryEntity, CategoryListAdapter.Cate
             txtCategoryTitle.text = data.name
             imageCategory.setBackgroundColor(imageCategory.context.getColor(categoryImage.bg))
             imageCategory.setImageDrawable(imageCategory.context.getDrawable(categoryImage.image))
+
+            view.setOnClickListener {
+                clickListener.invoke(data)
+            }
         }
     }
 
