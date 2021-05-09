@@ -1,4 +1,4 @@
-package com.devvailonge.flip.view.dialog
+package com.devvailonge.flip.features.flashcard.delete.presentation.ui
 
 import android.app.Dialog
 import android.os.Bundle

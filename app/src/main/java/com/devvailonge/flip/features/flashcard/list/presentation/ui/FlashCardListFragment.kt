@@ -29,12 +29,10 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(
             this,
             FlashCardListViewModel.FlashCardListViewModelFactory()
         ).get(FlashCardListViewModel::class.java)
-
     }
 
     override fun onStart() {
@@ -52,7 +50,6 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
     private fun updateState(state: FlashCardListState) {
         print(state)
     }
-
 
     companion object {
         const val EXTRA_CATEGORY_ID = "EXTRA_CATEGORY_ID"
