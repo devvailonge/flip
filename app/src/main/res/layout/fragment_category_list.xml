@@ -63,14 +63,12 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabCategoryList"
+        style="@style/FloatActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@null"
-        android:src="@drawable/ic_baseline_add"
-        app:backgroundTint="@color/fab"
         app:layout_anchor="@id/bottom_app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:tint="@null" />
+        app:layout_anchorGravity="bottom|end" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
