@@ -1,5 +1,7 @@
 package com.devvailonge.flip
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -26,5 +28,12 @@ class HostActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
+    }
+
+    companion object{
+
+        fun start(context: Context): Intent {
+            return Intent(context, HostActivity::class.java)
+        }
     }
 }

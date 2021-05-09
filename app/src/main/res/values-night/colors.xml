@@ -10,4 +10,7 @@
     <color name="cloud_light">#FFF8D2C4</color>
     <color name="cloud_med">#FFFCC4B0</color>
     <color name="cloud_dark">#FFEEC0AF</color>
+    <color name="gray">#5A6978</color>
+    <color name="brown">#FF442C2E</color>
+
 </resources>
