@@ -49,7 +49,6 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
         super.onStart()
         setObserver()
         viewModel.dispatch(CategoryListEvent.Fetch)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
