@@ -2,7 +2,6 @@ package com.devvailonge.flip.features.flashcard.list.presentation
 
 import androidx.lifecycle.*
 import com.devvailonge.flip.features.flashcard.list.domain.FetchFlashCardsUseCase
-import java.lang.IllegalArgumentException
 
 class FlashCardListViewModel(
     private val fetchFlashCardsUseCase: FetchFlashCardsUseCase
@@ -12,7 +11,7 @@ class FlashCardListViewModel(
 
     val state: LiveData<FlashCardListState> = event.switchMap {
         when(it) {
-            FlashCardListEvent.Fetch -> fetchFlashCardsUseCase.perform()
+            is FlashCardListEvent.Fetch -> fetchFlashCardsUseCase.perform(it.categoryId)
         }
     }
 

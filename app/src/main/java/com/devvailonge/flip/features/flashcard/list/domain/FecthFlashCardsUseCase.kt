@@ -15,12 +15,12 @@ class FetchFlashCardsUseCase(
     private val flashcardDao: FlashCardDao = AppDataBase.getDataBase(application).flashcardDao()
 ) {
 
-    fun perform(): LiveData<FlashCardListState> {
+    fun perform(categoryId: Long): LiveData<FlashCardListState> {
         return liveData {
             try {
                 emit(FlashCardListState.Loading(isLoading = true))
                 val source = flashcardDao
-                    .getAllFlashCards()
+                    .getFlashcardByCategory(categoryId)
                     .switchMap { list ->
                         liveData {
                             val state = if (list.isEmpty()) {

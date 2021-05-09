@@ -2,6 +2,7 @@ package com.devvailonge.flip.features.flashcard.list.presentation.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -20,11 +21,19 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val categoryId = arguments?.getLong(FlashCardListFragment.EXTRA_CATEGORY_ID)
+            ?: throw IllegalArgumentException("Missing category id")
+
         binding.fabFlashcardList.setOnClickListener {
             findNavController().navigate(
-                R.id.presentFlashCardCreate
+                R.id.presentFlashCardCreate,
+                bundleOf(EXTRA_CATEGORY_ID to categoryId)
+
             )
         }
+
+        viewModel.dispatch(FlashCardListEvent.Fetch(categoryId))
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +47,6 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
     override fun onStart() {
         super.onStart()
         setObserver()
-        viewModel.dispatch(FlashCardListEvent.Fetch)
     }
 
     private fun setObserver() {

@@ -12,6 +12,10 @@ interface FlashCardDao {
     @Query("SELECT * FROM flashcard_table ORDER BY id ASC ")
     fun getAllFlashCards(): LiveData<List<FlashCardEntity>>
 
+
+    @Query("SELECT * FROM flashcard_table  WHERE categoryId = :categoryId ORDER BY id ASC ")
+    fun getFlashcardByCategory(categoryId: Long): LiveData<List<FlashCardEntity>>
+
     @Update
     fun updateFlashCard(flashCard: FlashCardEntity)
 
