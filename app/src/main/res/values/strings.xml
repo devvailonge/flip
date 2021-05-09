@@ -26,6 +26,7 @@
     <string name="loading">Loading…</string>
     <string name="create_category_success">Success</string>
     <string name="create_category_failed">Failed</string>
+    <string name="create_flashcard_success">Success</string>
     <string name="category_name">Nome da categoria</string>
     <string name="select_image">Selecionar Imagem</string>
     <string name="save">Salvar</string>

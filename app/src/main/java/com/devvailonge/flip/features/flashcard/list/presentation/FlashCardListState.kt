@@ -1,4 +1,4 @@
-package com.devvailonge.flip.features.flashcard.presentation
+package com.devvailonge.flip.features.flashcard.list.presentation
 
 import androidx.annotation.StringRes
 import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
