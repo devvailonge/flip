@@ -23,18 +23,21 @@ class InsertFlashCardUseCase(
         return liveData {
             emit(FlashCardCreateState.Loading)
             try {
+
+                val trimTextFront = textFront.trim()
+                val trimTextBack = textBack.trim()
                 when {
-                    textFront.isEmpty() -> {
+                    trimTextFront.isEmpty() -> {
                         emit(FlashCardCreateState.Failed(R.string.create_flashcard_front_empty))
                     }
-                    textBack.isEmpty() -> {
+                    trimTextBack.isEmpty() -> {
                         emit(FlashCardCreateState.Failed(R.string.create_flashcard_back_empty))
                     }
                     else -> {
                         flashCardDao.addFlashCard(
                             FlashCardEntity(
-                                frontText = textFront,
-                                backText = textBack,
+                                frontText = trimTextFront,
+                                backText = trimTextBack,
                                 categoryId = categoryId
                             )
                         )
@@ -47,6 +50,7 @@ class InsertFlashCardUseCase(
                     }
                 }
             } catch (exception: Exception) {
+                exception.printStackTrace()
                 emit(FlashCardCreateState.Failed(R.string.flashcard_error))
             }
         }
