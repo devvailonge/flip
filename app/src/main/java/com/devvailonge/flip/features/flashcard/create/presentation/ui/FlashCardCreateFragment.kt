@@ -2,8 +2,10 @@ package com.devvailonge.flip.features.flashcard.create.presentation.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.devvailonge.flip.R
 import com.devvailonge.flip.databinding.FragmentFlashcardCreateBinding
 import com.devvailonge.flip.features.flashcard.create.presentation.FlashCardCreateEvent
@@ -12,7 +14,7 @@ import com.devvailonge.flip.features.flashcard.create.presentation.FlashCardCrea
 import com.devvailonge.flip.features.flashcard.list.presentation.ui.FlashCardListFragment
 import com.devvailonge.flip.utils.viewBinding
 
-class FlashCardCreateFragment: Fragment(R.layout.fragment_flashcard_create) {
+class FlashCardCreateFragment : Fragment(R.layout.fragment_flashcard_create) {
 
     private val binding by viewBinding(FragmentFlashcardCreateBinding::bind)
     private lateinit var viewModel: FlashCardCreateViewModel
@@ -51,6 +53,25 @@ class FlashCardCreateFragment: Fragment(R.layout.fragment_flashcard_create) {
     }
 
     private fun updateState(state: FlashCardCreateState) {
-        print(state)
+        when (state) {
+            FlashCardCreateState.Loading -> {
+                //ignore for now since we don't have api request
+            }
+            is FlashCardCreateState.Failed -> {
+                Toast.makeText(
+                    activity,
+                    state.message,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+            is FlashCardCreateState.Success -> {
+                Toast.makeText(
+                    activity,
+                    "${state.frontText} ${getString(state.message)}",
+                    Toast.LENGTH_LONG
+                ).show()
+                findNavController().navigateUp()
+            }
+        }
     }
 }

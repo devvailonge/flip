@@ -13,32 +13,47 @@ import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
 class InsertFlashCardUseCase(
     application: Application,
     private val flashCardDao: FlashCardDao = AppDataBase.getDataBase(application).flashcardDao()
-    ) {
+) {
 
-    fun perform(textFront:String, textBack:String, categoryId:Long) : LiveData<FlashCardCreateState>{
+    fun perform(
+        textFront: String,
+        textBack: String,
+        categoryId: Long
+    ): LiveData<FlashCardCreateState> {
         return liveData {
             emit(FlashCardCreateState.Loading)
             try {
                 when {
                     textFront.isEmpty() -> {
-                        emit(FlashCardCreateState.Message(R.string.create_flashcard_front_empty))
+                        emit(FlashCardCreateState.Failed(R.string.create_flashcard_front_empty))
                     }
                     textBack.isEmpty() -> {
-                        emit(FlashCardCreateState.Message(R.string.create_flashcard_back_empty))
+                        emit(FlashCardCreateState.Failed(R.string.create_flashcard_back_empty))
                     }
                     else -> {
-                        flashCardDao.addFlashCard(FlashCardEntity(frontText = textFront, backText = textBack, categoryId = categoryId))
-                        emit(FlashCardCreateState.Message(R.string.create_flashcard_success))
+                        flashCardDao.addFlashCard(
+                            FlashCardEntity(
+                                frontText = textFront,
+                                backText = textBack,
+                                categoryId = categoryId
+                            )
+                        )
+                        emit(
+                            FlashCardCreateState.Success(
+                                textFront,
+                                R.string.create_flashcard_success
+                            )
+                        )
                     }
                 }
-            } catch (exception:Exception) {
-                emit(FlashCardCreateState.Message(R.string.flashcard_error))
+            } catch (exception: Exception) {
+                emit(FlashCardCreateState.Failed(R.string.flashcard_error))
             }
         }
     }
 
-    companion object{
-        fun create(): InsertFlashCardUseCase{
+    companion object {
+        fun create(): InsertFlashCardUseCase {
             return InsertFlashCardUseCase(FlipApplication.instance)
         }
     }
