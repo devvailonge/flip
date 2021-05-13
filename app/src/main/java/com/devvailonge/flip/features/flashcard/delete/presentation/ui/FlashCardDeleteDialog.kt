@@ -6,7 +6,7 @@ import androidx.fragment.app.DialogFragment
 import com.devvailonge.flip.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class DeleteFlashCardDialog : DialogFragment() {
+class FlashCardDeleteDialog : DialogFragment() {
 
     private var _listener: (() -> Unit)? = null
 
