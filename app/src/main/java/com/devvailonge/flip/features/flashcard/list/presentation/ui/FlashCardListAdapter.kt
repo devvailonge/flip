@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devvailonge.flip.R
 import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
 
-class FlashCardListAdapter(private val clickListener: (FlashCardEntity) -> Unit) :
+class FlashCardListAdapter(
+    private val deleteClickListener: (FlashCardEntity) -> Unit,
+    private val editClickListener: (FlashCardEntity) -> Unit
+) :
     ListAdapter<FlashCardEntity, FlashCardListAdapter.FlashCardViewHolder>(FlashCardListAdapter) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlashCardViewHolder {
@@ -22,9 +25,8 @@ class FlashCardListAdapter(private val clickListener: (FlashCardEntity) -> Unit)
 
     override fun onBindViewHolder(holder: FlashCardViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, clickListener)
+        holder.bind(item, deleteClickListener, editClickListener)
     }
-
 
     class FlashCardViewHolder(
         private val view: View
@@ -33,7 +35,11 @@ class FlashCardListAdapter(private val clickListener: (FlashCardEntity) -> Unit)
         lateinit var imgEdit: ImageView
         lateinit var imgDelete: ImageView
 
-        fun bind(data: FlashCardEntity, clickListener: (FlashCardEntity) -> Unit) {
+        fun bind(
+            data: FlashCardEntity,
+            deleteClickListener: (FlashCardEntity) -> Unit,
+            editClickListener: (FlashCardEntity) -> Unit
+        ) {
 
             txtWordTitle = view.findViewById(R.id.txtWordFlashcard)
             imgEdit = view.findViewById(R.id.imgEditItemFlashcard)
@@ -48,6 +54,15 @@ class FlashCardListAdapter(private val clickListener: (FlashCardEntity) -> Unit)
                     txtWordTitle.text = data.backText
                 }
             }
+
+            imgEdit.setOnClickListener {
+                editClickListener.invoke(data)
+            }
+
+            imgDelete.setOnClickListener {
+                deleteClickListener.invoke(data)
+            }
+
             txtWordTitle.text = data.frontText
         }
     }

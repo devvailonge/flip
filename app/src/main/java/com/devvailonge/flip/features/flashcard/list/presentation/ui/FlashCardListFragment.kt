@@ -19,7 +19,8 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
 
     private val binding by viewBinding(FragmentFlashcardListBinding::bind)
     private lateinit var viewModel: FlashCardListViewModel
-    private val adapter: FlashCardListAdapter by lazy { FlashCardListAdapter(::deleteClicked) }
+    private val adapter: FlashCardListAdapter
+            by lazy { FlashCardListAdapter(::deleteClicked, ::editClicked) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,7 +32,6 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
             findNavController().navigate(
                 R.id.presentFlashCardCreate,
                 bundleOf(EXTRA_CATEGORY_ID to categoryId)
-
             )
         }
 
@@ -60,23 +60,21 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
         })
     }
 
-    private fun deleteClicked(flashCardEntity: FlashCardEntity) {
+    private fun deleteClicked(flashCardEntity: FlashCardEntity) {}
 
-    }
+    private fun editClicked(flashCardEntity: FlashCardEntity) {}
 
     private fun updateState(state: FlashCardListState) {
-       when(state){
-           FlashCardListState.Empty -> {}
-           is FlashCardListState.ErrorMessage -> {
-               Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
-           }
-           is FlashCardListState.FlashCardList -> {
-               adapter.submitList(state.list)
-           }
-           is FlashCardListState.Loading -> {
-
-           }
-       }
+        when (state) {
+            FlashCardListState.Empty -> { }
+            is FlashCardListState.ErrorMessage -> {
+                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+            }
+            is FlashCardListState.FlashCardList -> {
+                adapter.submitList(state.list)
+            }
+            is FlashCardListState.Loading -> { }
+        }
     }
 
     companion object {
