@@ -28,6 +28,12 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
         val categoryId = arguments?.getLong(EXTRA_CATEGORY_ID)
             ?: throw IllegalArgumentException("Missing category id")
 
+        val categoryName = arguments?.getString(EXTRA_CATEGORY_NAME)
+            ?: throw IllegalArgumentException("Missing category name")
+
+        //Update toolbar
+        findNavController().currentDestination?.label = categoryName
+
         binding.fabFlashcardList.setOnClickListener {
             findNavController().navigate(
                 R.id.presentFlashCardCreate,
@@ -79,5 +85,6 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
 
     companion object {
         const val EXTRA_CATEGORY_ID = "EXTRA_CATEGORY_ID"
+        const val EXTRA_CATEGORY_NAME = "EXTRA_CATEGORY_NAME"
     }
 }
