@@ -39,6 +39,15 @@ class FlashCardListAdapter(private val clickListener: (FlashCardEntity) -> Unit)
             imgEdit = view.findViewById(R.id.imgEditItemFlashcard)
             imgDelete = view.findViewById(R.id.imgCloseItemFlashcard)
 
+            var showFront = true
+            view.setOnClickListener {
+                showFront = !showFront
+                if(showFront){
+                    txtWordTitle.text = data.frontText
+                }else{
+                    txtWordTitle.text = data.backText
+                }
+            }
             txtWordTitle.text = data.frontText
         }
     }
