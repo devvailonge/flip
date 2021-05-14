@@ -11,10 +11,12 @@ import androidx.navigation.fragment.findNavController
 import com.devvailonge.flip.R
 import com.devvailonge.flip.databinding.FragmentFlashcardListBinding
 import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
+import com.devvailonge.flip.features.flashcard.delete.presentation.ui.FlashCardDeleteDialog
 import com.devvailonge.flip.features.flashcard.list.presentation.FlashCardListEvent
 import com.devvailonge.flip.features.flashcard.list.presentation.FlashCardListState
 import com.devvailonge.flip.features.flashcard.list.presentation.FlashCardListViewModel
 import com.devvailonge.flip.utils.viewBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
 
@@ -22,6 +24,7 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
     private lateinit var viewModel: FlashCardListViewModel
     private val adapter: FlashCardListAdapter
             by lazy { FlashCardListAdapter(::deleteClicked, ::editClicked) }
+    private val deleteDialog by lazy {  FlashCardDeleteDialog() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,20 +70,40 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
         })
     }
 
-    private fun deleteClicked(flashCardEntity: FlashCardEntity) {}
+    private fun deleteClicked(flashCardEntity: FlashCardEntity) {
+
+        MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogTheme)
+            .setTitle(getString(R.string.text_title_delete_dialog_flash))
+            .setMessage(getString(R.string.text_message_dialog_flash))
+            .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                viewModel.dispatch(FlashCardListEvent.Delete(flashCardEntity))
+            }
+            .setNegativeButton(getString(R.string.cancel)) { dialogInterface, _ ->
+                dialogInterface.cancel()
+            }
+            .create()
+            .show()
+
+    }
 
     private fun editClicked(flashCardEntity: FlashCardEntity) {}
 
     private fun updateState(state: FlashCardListState) {
         when (state) {
-            FlashCardListState.Empty -> { }
-            is FlashCardListState.ErrorMessage -> {
+            FlashCardListState.Empty -> {
+                adapter.submitList(emptyList())
+            }
+            is FlashCardListState.Message -> {
                 Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
             }
             is FlashCardListState.FlashCardList -> {
                 adapter.submitList(state.list)
             }
             is FlashCardListState.Loading -> { }
+            is FlashCardListState.DeleteSuccess -> {
+                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                viewModel.dispatch(FlashCardListEvent.Fetch(state.categoryId))
+            }
         }
     }
 

@@ -3,7 +3,6 @@ package com.devvailonge.flip.features.flashcard.list.domain
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import androidx.lifecycle.switchMap
 import com.devvailonge.flip.FlipApplication
 import com.devvailonge.flip.R
 import com.devvailonge.flip.base.AppDataBase
@@ -19,24 +18,20 @@ class FetchFlashCardsUseCase(
         return liveData {
             try {
                 emit(FlashCardListState.Loading(isLoading = true))
-                val source = flashcardDao
+                val result = flashcardDao
                     .getFlashcardByCategory(categoryId)
-                    .switchMap { list ->
-                        liveData {
-                            val state = if (list.isEmpty()) {
-                                FlashCardListState.Empty
-                            } else {
-                                FlashCardListState.FlashCardList(list)
-                            }
-                            emit(state)
-                            emit(FlashCardListState.Loading(isLoading = false))
-                        }
-                    }
 
-                emitSource(source)
+                val state = if (result.isEmpty()) {
+                    FlashCardListState.Empty
+                } else {
+                    FlashCardListState.FlashCardList(result)
+                }
+                emit(state)
+                emit(FlashCardListState.Loading(isLoading = false))
+
             } catch (exc: Exception) {
                 emit(FlashCardListState.Loading(isLoading = false))
-                emit(FlashCardListState.ErrorMessage(R.string.flashcard_error))
+                emit(FlashCardListState.Message(R.string.flashcard_error))
             }
         }
     }
