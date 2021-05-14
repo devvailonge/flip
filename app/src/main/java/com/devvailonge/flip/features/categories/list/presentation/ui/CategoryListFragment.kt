@@ -95,7 +95,10 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
     private fun categoryClickListener(categoryEntity: CategoryEntity) {
         findNavController().navigate(
             R.id.presentFlashCardList,
-            bundleOf(FlashCardListFragment.EXTRA_CATEGORY_ID to categoryEntity.id)
+            bundleOf(
+                FlashCardListFragment.EXTRA_CATEGORY_ID to categoryEntity.id,
+                FlashCardListFragment.EXTRA_CATEGORY_NAME to categoryEntity.name
+            )
         )
     }
 
