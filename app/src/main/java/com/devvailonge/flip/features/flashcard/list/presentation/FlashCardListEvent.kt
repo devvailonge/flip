@@ -8,4 +8,6 @@ sealed class FlashCardListEvent {
 
     data class Delete(val flashcardEntity: FlashCardEntity): FlashCardListEvent()
 
+    data class DeleteCategory(val categoryId: Long): FlashCardListEvent()
+
 }

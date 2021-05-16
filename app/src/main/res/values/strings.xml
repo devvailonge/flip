@@ -21,10 +21,13 @@
     <string name="title_category_image_list">Lista de categoria imagem</string>
     <string name="title_create_flash_card">Create Flash Cards</string>
     <string name="share">Share</string>
+    <string name="delete_category">Deletar</string>
     <string name="category_empty_message">Nada por aqui</string>
     <string name="category_error_message">Algo deu errado</string>
     <string name="loading">Carregando…</string>
     <string name="create_category_success">Successo</string>
+    <string name="delete_category_success">Categoria deletada com sucesso!</string>
+    <string name="delete_category_error">Algo deu errado, operação não realizada!</string>
     <string name="create_category_failed">Falhou</string>
     <string name="create_flashcard_success">Successo</string>
     <string name="category_name">Nome da categoria</string>

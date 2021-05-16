@@ -57,9 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/cloud_dark"
-        app:navigationIcon="@drawable/ic_baseline_share" />
-
+        app:backgroundTint="@color/cloud_dark" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabCategoryList"

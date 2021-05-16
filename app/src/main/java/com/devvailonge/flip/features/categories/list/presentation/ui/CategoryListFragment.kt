@@ -37,13 +37,13 @@ class CategoryListFragment : Fragment(R.layout.fragment_category_list) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(
             this,
             CategoryListViewModel.CategoryListViewModelFactory()
         ).get(CategoryListViewModel::class.java)
 
     }
+
 
     override fun onStart() {
         super.onStart()

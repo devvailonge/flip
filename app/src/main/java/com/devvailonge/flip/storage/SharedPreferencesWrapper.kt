@@ -1,4 +1,4 @@
-package com.devvailonge.flip.features.categories.storage
+package com.devvailonge.flip.storage
 
 import android.content.Context
 import android.content.SharedPreferences

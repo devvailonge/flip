@@ -6,8 +6,8 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.devvailonge.flip.HostActivity
 import com.devvailonge.flip.databinding.ActivitySplashScreenBinding
-import com.devvailonge.flip.features.categories.storage.SharedPreferencesWrapper
 import com.devvailonge.flip.features.onboarding.OnboardingActivity
+import com.devvailonge.flip.storage.SharedPreferencesWrapper
 
 class SplashActivity : AppCompatActivity() {
 

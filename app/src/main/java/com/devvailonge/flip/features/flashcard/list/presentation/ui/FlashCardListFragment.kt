@@ -1,6 +1,9 @@
 package com.devvailonge.flip.features.flashcard.list.presentation.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +23,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
 
     private val binding by viewBinding(FragmentFlashcardListBinding::bind)
+    private var categoryId: Long = 0
     private lateinit var viewModel: FlashCardListViewModel
     private val adapter: FlashCardListAdapter
             by lazy { FlashCardListAdapter(::deleteClicked) }
@@ -27,7 +31,7 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoryId = arguments?.getLong(EXTRA_CATEGORY_ID)
+        categoryId = arguments?.getLong(EXTRA_CATEGORY_ID)
             ?: throw IllegalArgumentException("Missing category id")
 
         val categoryName = arguments?.getString(EXTRA_CATEGORY_NAME)
@@ -49,12 +53,25 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_category, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         viewModel = ViewModelProvider(
             this,
             FlashCardListViewModel.FlashCardListViewModelFactory()
         ).get(FlashCardListViewModel::class.java)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_delete_category) {
+            viewModel.dispatch(FlashCardListEvent.DeleteCategory(categoryId))
+        }
+        return true
     }
 
     override fun onStart() {
@@ -97,10 +114,15 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
                 binding.vpFlashcardList.displayedChild = CONTENT
                 adapter.submitList(state.list)
             }
-            is FlashCardListState.Loading -> { }
+            is FlashCardListState.Loading -> {
+            }
             is FlashCardListState.DeleteSuccess -> {
                 Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
                 viewModel.dispatch(FlashCardListEvent.Fetch(state.categoryId))
+            }
+            is FlashCardListState.DeleteCategorySuccess -> {
+                Toast.makeText(activity, state.message, Toast.LENGTH_LONG).show()
+                findNavController().navigateUp()
             }
         }
     }
@@ -108,7 +130,7 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
     companion object {
         const val EXTRA_CATEGORY_ID = "EXTRA_CATEGORY_ID"
         const val EXTRA_CATEGORY_NAME = "EXTRA_CATEGORY_NAME"
-        const val EMPTY = 0
-        const val CONTENT = 1
+        const val EMPTY = 1
+        const val CONTENT = 0
     }
 }
