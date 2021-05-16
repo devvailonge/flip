@@ -1,16 +1,20 @@
 package com.devvailonge.flip
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.devvailonge.flip.databinding.ActivityHostBinding
 
-class HostActivity : AppCompatActivity() {
+class HostActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
     private lateinit var binding: ActivityHostBinding
 
@@ -28,6 +32,7 @@ class HostActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
+        navController.addOnDestinationChangedListener(this)
     }
 
     companion object{
@@ -35,5 +40,18 @@ class HostActivity : AppCompatActivity() {
         fun start(context: Context): Intent {
             return Intent(context, HostActivity::class.java)
         }
+    }
+
+    override fun onDestinationChanged(
+        controller: NavController,
+        destination: NavDestination,
+        arguments: Bundle?
+    ) {
+        currentFocus?.hideKeyboard()
+    }
+
+    private fun View.hideKeyboard() {
+        val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 }
