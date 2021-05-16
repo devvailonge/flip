@@ -12,8 +12,7 @@ import com.devvailonge.flip.R
 import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
 
 class FlashCardListAdapter(
-    private val deleteClickListener: (FlashCardEntity) -> Unit,
-    private val editClickListener: (FlashCardEntity) -> Unit
+    private val deleteClickListener: (FlashCardEntity) -> Unit
 ) :
     ListAdapter<FlashCardEntity, FlashCardListAdapter.FlashCardViewHolder>(FlashCardListAdapter) {
 
@@ -25,24 +24,21 @@ class FlashCardListAdapter(
 
     override fun onBindViewHolder(holder: FlashCardViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, deleteClickListener, editClickListener)
+        holder.bind(item, deleteClickListener)
     }
 
     class FlashCardViewHolder(
         private val view: View
     ) : RecyclerView.ViewHolder(view) {
         lateinit var txtWordTitle: TextView
-        lateinit var imgEdit: ImageView
         lateinit var imgDelete: ImageView
 
         fun bind(
             data: FlashCardEntity,
-            deleteClickListener: (FlashCardEntity) -> Unit,
-            editClickListener: (FlashCardEntity) -> Unit
+            deleteClickListener: (FlashCardEntity) -> Unit
         ) {
 
             txtWordTitle = view.findViewById(R.id.txtWordFlashcard)
-            imgEdit = view.findViewById(R.id.imgEditItemFlashcard)
             imgDelete = view.findViewById(R.id.imgCloseItemFlashcard)
 
             var showFront = true
@@ -53,10 +49,6 @@ class FlashCardListAdapter(
                 }else{
                     txtWordTitle.text = data.backText
                 }
-            }
-
-            imgEdit.setOnClickListener {
-                editClickListener.invoke(data)
             }
 
             imgDelete.setOnClickListener {
