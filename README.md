@@ -5,8 +5,12 @@ Aplicativo para memorizar palavras.
 Flip é o resultado da nossa primeira maratona dentro da comunidade Dev Vai longe!
 Contém as seguintes funcionalidades
 * Unidirecional data flow, tratamento de eventos/state.
-* CRUD de categorias
-* CRUD de flascards
+* Criação de novas categorias para agrupar cartões
+* Lista de categorias
+* Delete uma categoria com todos os cartões.
+* Criação de um novo flashcard com textos na frente/verso, atrelados a uma categoria.
+* Lista de flashcards com a funcionalidade de fazer o flip do card para ver frente e verso.
+* Deletar um card.
 
 ## :bulb: Motivação
 <!--- Optionally point readers to interesting parts of your submission. -->
