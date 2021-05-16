@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Flip">
-        <activity android:name=".features.onboarding.OnboardingActivity">
+        <activity android:name=".features.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".HostActivity" />
+        <activity android:name=".features.onboarding.OnboardingActivity" />
     </application>
 
 </manifest>

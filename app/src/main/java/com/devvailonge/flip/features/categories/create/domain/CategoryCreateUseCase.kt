@@ -20,12 +20,19 @@ class CreateCategoryUseCase(
         return liveData {
             emit(CategoryCreateState.Loading)
             try {
-                categoryImage?.let {
-                    val result = categoryDao
-                        .insert(CategoryEntity(name = name, categoryImage = it.name))
-                    emit(CategoryCreateState.Success(result, R.string.create_category_success))
-                } ?: run {
-                    emit(CategoryCreateState.Error(R.string.missing_category_image))
+                name
+                    .trim()
+                    .takeIf { it.isNotEmpty() }
+                    ?.let {
+                        categoryImage?.let {
+                            val result = categoryDao
+                                .insert(CategoryEntity(name = name, categoryImage = it.name))
+                            emit(CategoryCreateState.Success(result, R.string.create_category_success))
+                        } ?: run {
+                            emit(CategoryCreateState.Error(R.string.missing_category_image))
+                        }
+                    } ?: run{
+                    emit(CategoryCreateState.Error(R.string.missing_category_name))
                 }
 
             } catch (exception: Exception) {

@@ -17,6 +17,7 @@ class OnboardingActivity : AppCompatActivity() {
     private lateinit var btnBack: Button
     private lateinit var btnNext: Button
     private lateinit var btnSkip: Button
+    private lateinit var btnFinish: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,43 +27,50 @@ class OnboardingActivity : AppCompatActivity() {
         btnBack = findViewById(R.id.button_back)
         btnNext = findViewById(R.id.button_next)
         btnSkip = findViewById(R.id.button_skip)
+        btnFinish = findViewById(R.id.button_finish)
 
         val list = OnboardingSteps.values()
 
         btnSkip.setOnClickListener {
+            finish()
+            startActivity(HostActivity.start(this))
+        }
+
+        btnFinish.setOnClickListener {
+            finish()
             startActivity(HostActivity.start(this))
         }
 
         val adapter = OnboardingViewPagerAdapter(list)
-        viewPager.adapter=adapter
+        viewPager.adapter = adapter
         circleIndicator.setViewPager(viewPager)
 
         btnNext.setOnClickListener {
-            val nextItem = viewPager.currentItem +1
-            viewPager.setCurrentItem(nextItem,true)
+            val nextItem = viewPager.currentItem + 1
+            viewPager.setCurrentItem(nextItem, true)
         }
 
+        btnBack.setOnClickListener {
+            val nextItem = viewPager.currentItem - 1
+            viewPager.setCurrentItem(nextItem, true)
+        }
 
-
-        viewPager.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                btnNext.isGone = (position +1) == list.size
+                btnNext.isGone = (position + 1) == list.size
+                btnFinish.isVisible = (position + 1) == list.size
                 btnBack.isVisible = position != 0
                 btnSkip.isVisible = position == 0
-
             }
         })
     }
 
-
-
-
 }
 
-enum class OnboardingSteps (val image: Int, val title:Int ){
+enum class OnboardingSteps(val image: Int, val title: Int) {
     ONBOARDING_STEP_ONE(R.drawable.ic_onboarding_one, R.string.onboarding_step_one),
-    ONBOARDING_STEP_TWO(R.drawable.ic_onboarding_two,R.string.onboarding_step_two),
-    ONBOARDING_STEP_THREE(R.drawable.ic_onboarding_three,R.string.onboarding_step_three)
+    ONBOARDING_STEP_TWO(R.drawable.ic_onboarding_two, R.string.onboarding_step_two),
+    ONBOARDING_STEP_THREE(R.drawable.ic_onboarding_three, R.string.onboarding_step_three)
 
 }

@@ -28,12 +28,5 @@
         android:layout_marginTop="@dimen/size_1"
         tools:text="Alemao A1" />
 
-    <TextView
-        android:id="@+id/txtCategoryDesc"
-        style="@style/Body.Gray"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_1"
-        android:text="Total: 12 cards" />
 </LinearLayout>
 
