@@ -1,44 +1,37 @@
 package com.devvailonge.flip.features.onboarding
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.devvailonge.flip.R
-import com.devvailonge.flip.features.categories.images.CategoryImageListAdapter
+import com.devvailonge.flip.databinding.ItemOnboardingBinding
 
-class OnboardingViewPagerAdapter(val steps: Array<OnboardingSteps>):RecyclerView.Adapter<OnboardingViewHolder>() {
+class OnboardingViewPagerAdapter(private val steps: Array<OnboardingSteps>) :
+    RecyclerView.Adapter<OnboardingViewPagerAdapter.OnboardingViewHolder>() {
+
+    inner class OnboardingViewHolder(val binding: ItemOnboardingBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OnboardingViewHolder {
-
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val itemView = layoutInflater.inflate(R.layout.item_onboarding,parent,false)
-
-     return OnboardingViewHolder(itemView)
+        return OnboardingViewHolder(
+            ItemOnboardingBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
+    override fun getItemCount(): Int = steps.size
 
     override fun onBindViewHolder(holder: OnboardingViewHolder, position: Int) {
-        holder.bind(steps[position])
+        val step = steps[position]
+        holder.binding.apply {
+            title.text = holder.itemView.context.getString(step.title)
+            image.setImageDrawable(
+                ContextCompat.getDrawable(
+                    holder.itemView.context,
+                    step.image
+                )
+            )
+        }
     }
-
-    override fun getItemCount(): Int {
-        return steps.size
-    }
-
-
-}
-
-class OnboardingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-    fun bind (step: OnboardingSteps){
-        val title: TextView = itemView.findViewById(R.id.title)
-        val image: ImageView = itemView.findViewById(R.id.image)
-
-        title.text=itemView.context.getString(step.title)
-        image.setImageDrawable(ContextCompat.getDrawable(itemView.context,step.image))
-    }
-
-
 }

@@ -14,11 +14,14 @@ import androidx.navigation.fragment.findNavController
 import com.devvailonge.flip.R
 import com.devvailonge.flip.databinding.FragmentFlashcardListBinding
 import com.devvailonge.flip.features.flashcard.data.FlashCardEntity
+import com.devvailonge.flip.features.flashcard.delete.presentation.ui.FlashCardDeleteDialog
 import com.devvailonge.flip.features.flashcard.list.presentation.FlashCardListEvent
 import com.devvailonge.flip.features.flashcard.list.presentation.FlashCardListState
 import com.devvailonge.flip.features.flashcard.list.presentation.FlashCardListViewModel
 import com.devvailonge.flip.utils.viewBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
+private const val DELETE_ARTICLE_DIALOG_TAG = "CancelDialog"
 
 class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
 
@@ -86,19 +89,11 @@ class FlashCardListFragment : Fragment(R.layout.fragment_flashcard_list) {
     }
 
     private fun deleteClicked(flashCardEntity: FlashCardEntity) {
-
-        MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogTheme)
-            .setTitle(getString(R.string.text_title_delete_dialog_flash))
-            .setMessage(getString(R.string.text_message_dialog_flash))
-            .setPositiveButton(getString(R.string.delete)) { _, _ ->
+        FlashCardDeleteDialog().apply {
+            setListener {
                 viewModel.dispatch(FlashCardListEvent.Delete(flashCardEntity))
             }
-            .setNegativeButton(getString(R.string.cancel)) { dialogInterface, _ ->
-                dialogInterface.cancel()
-            }
-            .create()
-            .show()
-
+        }.show(parentFragmentManager, DELETE_ARTICLE_DIALOG_TAG)
     }
 
     private fun updateState(state: FlashCardListState) {
